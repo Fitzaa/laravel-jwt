@@ -1,0 +1,17 @@
+{
+    "name": "floinay/laravel-jwt",
+    "type": "library",
+    "license": "MIT",
+    "description": "",
+    "authors": [
+        {
+            "name": "Evgeny Dobryansky",
+            "email": "noeskize@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/support": "^6.7",
+        "illuminate/database": "^6.7"
+    }
+}

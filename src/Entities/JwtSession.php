@@ -1,5 +1,6 @@
 <?php
 
+namespace LaravelJwt\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;

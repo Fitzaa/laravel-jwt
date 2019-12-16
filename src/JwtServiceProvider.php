@@ -2,6 +2,7 @@
 
 namespace LaravelJwt;
 
+use Ahc\Jwt\JWT;
 use Illuminate\Support\ServiceProvider;
 
 class JwtServiceProvider extends ServiceProvider
@@ -14,6 +15,12 @@ class JwtServiceProvider extends ServiceProvider
 
     public function register()
     {
-        parent::register();
+        $this->app->singleton(JWT::class, function () {
+            return new JWT(
+                config('jwt.signature'),
+                config('jwt.algorithm'),
+                config('jwt.max_age'),
+                config('jwt.leeway'));
+        });
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelJwt;
+namespace LaravelJwt\Providers;
 
 use Ahc\Jwt\JWT;
 use Illuminate\Support\ServiceProvider;
@@ -9,8 +9,11 @@ class JwtServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
-        $this->loadMigrationsFrom([__DIR__ . '/migrations/create_sessions_table.php']);
+        $configPath = __DIR__ . '/../config/jwt.php';
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadMigrationsFrom([__DIR__ . '/../migrations/create_sessions_table.php']);
+        $this->publishes([$configPath => config_path('jwt.php')], 'config');
+        $this->mergeConfigFrom($configPath, 'jwt');
     }
 
     public function register()

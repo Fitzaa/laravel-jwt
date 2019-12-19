@@ -4,7 +4,6 @@ namespace LaravelJwt\Http\Guard;
 
 use Ahc\Jwt\JWT;
 use Illuminate\Auth\GuardHelpers;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
@@ -24,14 +23,6 @@ class JwtGuard implements Guard
         $this->user         = null;
     }
 
-
-    /**
-     * @inheritDoc
-     */
-    public function guest()
-    {
-        // TODO: Implement guest() method.
-    }
 
     /**
      * @return \Illuminate\Contracts\Auth\Authenticatable|null

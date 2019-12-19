@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 
-class JwtMiddleware implements Guard
+class JwtGuard implements Guard
 {
     use GuardHelpers;
     private $jwt;
@@ -38,9 +38,22 @@ class JwtMiddleware implements Guard
      */
     public function user()
     {
+        if ( ! is_null($this->user)) {
+            return $this->user;
+        }
+
+        try {
+            $payload = $this->jwt->decode($this->request->bearerToken());
+        } catch (\Exception $exception) {
+            return null;
+        }
+
+        if ( ! empty($payload)) {
+            $this->user = $this->userProvider->retrieveById($payload['id']);
+        }
+
         return $this->user;
     }
-
 
 
     public function validate(array $credentials = []): bool
@@ -48,13 +61,5 @@ class JwtMiddleware implements Guard
         $this->user = $this->userProvider->retrieveByCredentials($credentials);
 
         return $this->user && $this->userProvider->validateCredentials($this->user, $credentials);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setUser(Authenticatable $user)
-    {
-        $this->user = $user;
     }
 }

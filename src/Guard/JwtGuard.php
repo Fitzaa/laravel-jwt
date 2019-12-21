@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelJwt\Http\Guard;
+namespace LaravelJwt\Guard;
 
 use Ahc\Jwt\JWT;
 use Illuminate\Auth\GuardHelpers;

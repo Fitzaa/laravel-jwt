@@ -34,4 +34,17 @@ class JwtSession extends Model
     {
         return ! $this->active;
     }
+
+    public static function create(int $userId)
+    {
+        $signature = config('signature');
+    }
+
+    public function toArray()
+    {
+        return [
+            'token'   => $this->refresh_token,
+            'expires' => $this->expires
+        ];
+    }
 }

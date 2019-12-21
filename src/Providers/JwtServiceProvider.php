@@ -7,7 +7,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use LaravelJwt\Http\Guard\JwtGuard;
+use LaravelJwt\Jwt as JwtBase;
+use LaravelJwt\Options\JwtConfig;
 
 class JwtServiceProvider extends ServiceProvider
 {
@@ -25,9 +26,9 @@ class JwtServiceProvider extends ServiceProvider
     {
         $this->app->singleton(JWT::class, function () {
             return new JWT(
-                config('jwt.signature'),
+                JwtConfig::signature(),
                 config('jwt.algorithm'),
-                config('jwt.max_age'),
+                JwtConfig::maxAge(),
                 config('jwt.leeway'));
         });
     }

@@ -8,6 +8,7 @@ use Ahc\Jwt\JWT;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use LaravelJwt\Entities\AccessToken;
 use LaravelJwt\Entities\JwtSession;
 use LaravelJwt\Options\JwtConfig;
 
@@ -22,12 +23,9 @@ class JwtService
         $this->request = $request;
     }
 
-    public function accessToken(User $user): array
+    public function accessToken(User $user): AccessToken
     {
-        return [
-            'access_token' => $this->jwt->encode([$user->getKey()]),
-            'expires'      => Carbon::now()->addSeconds(JwtConfig::maxAge())->timestamp
-        ];
+        return new AccessToken($this->jwt->encode($user->getKey()));
     }
 
     public function refreshToken(User $user): JwtSession

@@ -20,10 +20,11 @@ class JwtTokenResource extends JsonResource
     public function toArray($request)
     {
         $session = JwtFacade::refreshToken($this->resource);
+        $access  = JwtFacade::accessToken($this->resource);
 
         return [
             'refresh' => $session->toArray(),
-            'access'  => JwtFacade::accessToken($this->resource)
+            'access'  => $access->toArray()
         ];
     }
 }

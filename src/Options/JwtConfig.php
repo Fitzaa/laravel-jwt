@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LaravelJwt\Options;
+namespace Floinay\LaravelJwt\Options;
 
 
 use LaravelJwt\Exceptions\EmptySignatureException;

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace LaravelJwt\Entities;
+namespace Floinay\LaravelJwt\Entities;
 
 
 use Illuminate\Support\Carbon;
-use LaravelJwt\Options\JwtConfig;
+use Floinay\LaravelJwt\Options\JwtConfig;
 
 class AccessToken
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LaravelJwt\Options;
+namespace Floinay\LaravelJwt\Options;
 
 
 class SupportedAlgorithms

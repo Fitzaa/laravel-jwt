@@ -1,12 +1,12 @@
 <?php
 
 
-namespace LaravelJwt;
+namespace Floinay\LaravelJwt;
 
 use Illuminate\Contracts\Routing\Registrar as Router;
-use LaravelJwt\Http\Controllers\LoginController;
-use LaravelJwt\Http\Controllers\RefreshToken;
-use LaravelJwt\Http\Controllers\RegisterController;
+use Floinay\LaravelJwt\Http\Controllers\LoginController;
+use Floinay\LaravelJwt\Http\Controllers\RefreshToken;
+use Floinay\LaravelJwt\Http\Controllers\RegisterController;
 
 class RouterRegistrar
 {

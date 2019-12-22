@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelJwt\Guard;
+namespace Floinay\LaravelJwt\Guards;
 
 use Ahc\Jwt\JWT;
 use Illuminate\Auth\GuardHelpers;

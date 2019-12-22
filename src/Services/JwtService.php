@@ -1,16 +1,16 @@
 <?php
 
 
-namespace LaravelJwt\Services;
+namespace Floinay\LaravelJwt\Services;
 
 
 use Ahc\Jwt\JWT;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use LaravelJwt\Entities\AccessToken;
-use LaravelJwt\Entities\JwtSession;
-use LaravelJwt\Options\JwtConfig;
+use Floinay\LaravelJwt\Entities\AccessToken;
+use Floinay\LaravelJwt\Entities\JwtSession;
+use Floinay\LaravelJwt\Options\JwtConfig;
 
 class JwtService
 {

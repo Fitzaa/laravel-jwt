@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LaravelJwt\Http\Controllers;
+namespace Floinay\LaravelJwt\Http\Controllers;
 
 
 use Illuminate\Routing\Controller;

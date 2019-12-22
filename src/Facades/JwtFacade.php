@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelJwt\Facades;
+namespace Floinay\LaravelJwt\Facades;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Facade;

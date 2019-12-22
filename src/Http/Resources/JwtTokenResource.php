@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelJwt\Http\Resources;
+namespace Floinay\LaravelJwt\Http\Resources;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelJwt\Facades\JwtFacade;
+use Floinay\LaravelJwt\Facades\JwtFacade;
 
 /**
  * Class JwtTokenResource

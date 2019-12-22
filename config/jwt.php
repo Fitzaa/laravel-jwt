@@ -1,6 +1,6 @@
 <?php
 
-use LaravelJwt\Options\SupportedAlgorithms;
+use Floinay\LaravelJwt\Options\SupportedAlgorithms;
 
 return [
     'signature'       => env('JWT_SIGNATURE'),

@@ -1,13 +1,12 @@
 <?php
 
-namespace LaravelJwt\Providers;
+namespace Floinay\LaravelJwt\Providers;
 
 use Ahc\Jwt\JWT;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use LaravelJwt\Jwt as JwtBase;
 use LaravelJwt\Options\JwtConfig;
 
 class JwtServiceProvider extends ServiceProvider

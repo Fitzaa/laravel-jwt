@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelJwt\Exceptions;
+namespace Floinay\LaravelJwt\Exceptions;
 
 class EmptySignatureException extends \Exception
 {

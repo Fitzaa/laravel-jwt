@@ -4,7 +4,7 @@
 namespace Floinay\LaravelJwt\Options;
 
 
-use LaravelJwt\Exceptions\EmptySignatureException;
+use Floinay\LaravelJwt\Exceptions\EmptySignatureException;
 
 class JwtConfig
 {

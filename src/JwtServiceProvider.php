@@ -1,13 +1,14 @@
 <?php
 
-namespace Floinay\LaravelJwt\Providers;
+namespace Floinay\LaravelJwt;
 
 use Ahc\Jwt\JWT;
+use Floinay\LaravelJwt\Console\GenerateJwtSignatureCommand;
+use Floinay\LaravelJwt\Options\JwtConfig;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use LaravelJwt\Options\JwtConfig;
 
 class JwtServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class JwtServiceProvider extends ServiceProvider
                 JwtConfig::maxAge(),
                 config('jwt.leeway'));
         });
+        $this->registerCommands();
     }
 
     private function extendAuth()
@@ -40,5 +42,12 @@ class JwtServiceProvider extends ServiceProvider
 
             return new JwtGuard($jwt, Auth::createUserProvider($config['provider']), $request);
         });
+    }
+
+    private function registerCommands()
+    {
+        $this->commands([
+            GenerateJwtSignatureCommand::class
+        ]);
     }
 }

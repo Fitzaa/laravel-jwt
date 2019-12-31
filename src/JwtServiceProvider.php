@@ -16,7 +16,7 @@ class JwtServiceProvider extends ServiceProvider
     {
         $configPath = __DIR__ . '/../config/jwt.php';
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        $this->loadMigrationsFrom([__DIR__ . '/../migrations/create_sessions_table.php']);
+        $this->loadMigrationsFrom([__DIR__ . '/../database/migrations/2019_31_12_0001_create_sessions_table.php']);
         $this->publishes([$configPath => config_path('jwt.php')], 'config');
         $this->mergeConfigFrom($configPath, 'jwt');
         $this->extendAuth();

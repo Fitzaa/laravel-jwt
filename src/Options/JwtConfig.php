@@ -10,7 +10,7 @@ class JwtConfig
 {
     public static function signature(): string
     {
-        $signature = config('signature');
+        $signature = config('jwt.signature');
 
         throw_if(
             empty($signature),

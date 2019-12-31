@@ -25,16 +25,17 @@ class JwtService
 
     public function accessToken(User $user): AccessToken
     {
-        return new AccessToken($this->jwt->encode($user->getKey()));
+        return new AccessToken($this->jwt->encode(['id' => $user->getKey()]));
     }
 
     public function refreshToken(User $user): JwtSession
     {
-        $session             = new JwtSession();
-        $session->ip         = $this->request->ip();
-        $session->user_agent = $this->request->userAgent();
-        $session->user_id    = $user->getKey();
-        $session->expires    = Carbon::now()->addSeconds(JwtConfig::maxRefreshAge())->timestamp;
+        $session                = new JwtSession();
+        $session->ip            = $this->request->ip();
+        $session->user_agent    = $this->request->userAgent();
+        $session->refresh_token = uniqid('refresh');
+        $session->user_id       = $user->getKey();
+        $session->expires       = Carbon::now()->addSeconds(JwtConfig::maxRefreshAge())->timestamp;
         $session->saveOrFail();
         $session->refresh();
 

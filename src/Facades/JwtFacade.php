@@ -4,9 +4,9 @@ namespace Floinay\LaravelJwt\Facades;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Facade;
-use LaravelJwt\Entities\AccessToken;
-use LaravelJwt\Entities\JwtSession;
-use LaravelJwt\Services\JwtService;
+use Floinay\LaravelJwt\Entities\AccessToken;
+use Floinay\LaravelJwt\Entities\JwtSession;
+use Floinay\LaravelJwt\Services\JwtService;
 
 /**
  * Class JwtFacade

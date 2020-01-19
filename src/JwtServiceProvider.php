@@ -4,6 +4,7 @@ namespace Floinay\LaravelJwt;
 
 use Ahc\Jwt\JWT;
 use Floinay\LaravelJwt\Console\GenerateJwtSignatureCommand;
+use Floinay\LaravelJwt\Guards\JwtGuard;
 use Floinay\LaravelJwt\Options\JwtConfig;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;

@@ -12,7 +12,7 @@ use Floinay\LaravelJwt\Entities\AccessToken;
 use Floinay\LaravelJwt\Entities\JwtSession;
 use Floinay\LaravelJwt\Options\JwtConfig;
 
-class JwtService
+class JwtTokensGeneratorService
 {
     private $jwt;
     private $request;

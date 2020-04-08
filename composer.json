@@ -3,7 +3,7 @@
     "type": "library",
     "license": "MIT",
     "description": "",
-    "version": "1.0",
+    "version": "1.1",
     "authors": [
         {
             "name": "Evgeny Dobryansky",
@@ -13,7 +13,8 @@
     "minimum-stability": "dev",
     "prefer-stable": false,
     "require": {
-        "adhocore/jwt": "^1.0"
+        "adhocore/jwt": "^1.0",
+        "laravel/framework": "^6.2"
     },
     "autoload": {
         "classmap": [

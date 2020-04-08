@@ -4,7 +4,7 @@ namespace Floinay\LaravelJwt\Http\Resources;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Floinay\LaravelJwt\Facades\JwtFacade;
+use Floinay\LaravelJwt\Facades\JwtTokensGeneratorFacade;
 
 /**
  * Class JwtTokenResource
@@ -19,8 +19,8 @@ class JwtTokenResource extends JsonResource
 
     public function toArray($request)
     {
-        $session = JwtFacade::refreshToken($this->resource);
-        $access  = JwtFacade::accessToken($this->resource);
+        $session = JwtTokensGeneratorFacade::refreshToken($this->resource);
+        $access  = JwtTokensGeneratorFacade::accessToken($this->resource);
 
         return [
             'refresh' => $session->toArray(),

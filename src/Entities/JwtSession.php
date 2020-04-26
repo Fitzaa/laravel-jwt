@@ -27,12 +27,27 @@ class JwtSession extends Model
 
     public function isActive()
     {
-        return ! Carbon::parse($this->expires)->isPast();
+        return $this->isNotPast() && $this->isNotLocked();
     }
 
-    public function isLock()
+    public function isNotPast()
+    {
+        return ! $this->isPast();
+    }
+
+    public function isPast()
+    {
+        return Carbon::parse($this->expires)->isPast();
+    }
+
+    public function isLocked()
     {
         return ! $this->active;
+    }
+
+    public function isNotLocked()
+    {
+        return $this->active;
     }
 
     public function toArray()

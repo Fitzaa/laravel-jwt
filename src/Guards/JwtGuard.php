@@ -34,7 +34,7 @@ class JwtGuard implements Guard
         }
 
         try {
-            $payload = $this->jwt->decode($this->request->bearerToken());
+            $payload = $this->jwt->decode((string)$this->request->bearerToken());
         } catch (\Exception $exception) {
             return null;
         }

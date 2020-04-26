@@ -5,6 +5,8 @@ namespace Floinay\LaravelJwt\Services;
 
 
 use Floinay\LaravelJwt\Entities\JwtSession;
+use Floinay\LaravelJwt\Exceptions\LockedSessionException;
+use Floinay\LaravelJwt\Exceptions\PastSessionException;
 use Floinay\LaravelJwt\Exceptions\WrongIpException;
 use Floinay\LaravelJwt\Exceptions\WrongRefreshTokenException;
 use Floinay\LaravelJwt\Exceptions\WrongUserAgentException;
@@ -16,20 +18,28 @@ class JwtRefreshTokenService
 
     public function refresh(JwtRefreshTokenRequest $request): User
     {
-
-        try {
-            $session = JwtSession::whereRefreshToken($request->token)->firstOrFail();
-        } catch (\Exception$exception) {
-            throw new WrongRefreshTokenException("Request token '{$request->token} is not equals current session'");
-        }
-
-        $this->validateUserAgent($session, $request->userAgent());
-        $this->validateIp($session, $request->ip());
+        $session = $this->getSessionByToken($request->token);
+        $this->checkUserAgent($session, $request->userAgent());
+        $this->checkIp($session, $request->ip());
+        $this->checkDate($session);
+        $this->checkIsActive($session);
+        $session->lock();
 
         return User::whereId($session->user_id)->firstOrFail();
     }
 
-    private function validateUserAgent(JwtSession $session, string $ua)
+    public function getSessionByToken(string $token): JwtSession
+    {
+        try {
+            $session = JwtSession::whereRefreshToken($token)->firstOrFail();
+        } catch (\Exception$exception) {
+            throw new WrongRefreshTokenException("Request token '{$token} is not equals current session'");
+        }
+
+        return $session;
+    }
+
+    private function checkUserAgent(JwtSession $session, string $ua)
     {
         if ($session->user_agent && $session->user_agent !== $ua) {
             throw new WrongUserAgentException(
@@ -39,7 +49,21 @@ class JwtRefreshTokenService
         }
     }
 
-    private function validateIp(JwtSession $session, string $ip)
+    private function checkIsActive(JwtSession $session)
+    {
+        if ($session->isLocked()) {
+            throw new LockedSessionException('This session is locked');
+        }
+    }
+
+    private function checkDate(JwtSession $session)
+    {
+        if ($session->isPast()) {
+            throw new PastSessionException("The token {$session->refresh_token} is past");
+        }
+    }
+
+    private function checkIp(JwtSession $session, string $ip)
     {
         if ($session->ip !== $ip) {
             throw new WrongIpException('You ip address is not equals current session ip');

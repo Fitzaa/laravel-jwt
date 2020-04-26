@@ -34,6 +34,7 @@ class JwtTokensGeneratorService
         $session->ip            = $this->request->ip();
         $session->user_agent    = $this->request->userAgent();
         $session->refresh_token = uniqid('refresh');
+        $session->active        = true;
         $session->user_id       = $user->getKey();
         $session->expires       = Carbon::now()->addSeconds(JwtConfig::maxRefreshAge())->timestamp;
         $session->saveOrFail();

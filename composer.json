@@ -13,8 +13,7 @@
     "minimum-stability": "dev",
     "prefer-stable": false,
     "require": {
-        "adhocore/jwt": "^1.0",
-        "laravel/framework": "^7.0.0"
+        "adhocore/jwt": "^1.0"
     },
     "autoload": {
         "classmap": [

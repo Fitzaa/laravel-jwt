@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Floinay\LaravelJwt\Entities\AccessToken;
 use Floinay\LaravelJwt\Entities\JwtSession;
 use Floinay\LaravelJwt\Options\JwtConfig;
+use Illuminate\Support\Str;
 
 class JwtTokensGeneratorService
 {
@@ -33,7 +34,7 @@ class JwtTokensGeneratorService
         $session                = new JwtSession();
         $session->ip            = $this->request->ip();
         $session->user_agent    = $this->request->userAgent();
-        $session->refresh_token = uniqid('refresh');
+        $session->refresh_token = Str::uuid();
         $session->active        = true;
         $session->user_id       = $user->getKey();
         $session->expires       = Carbon::now()->addSeconds(JwtConfig::maxRefreshAge())->timestamp;

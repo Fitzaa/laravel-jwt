@@ -41,7 +41,7 @@ class JwtRefreshTokenService
 
     private function checkUserAgent(JwtSession $session, string $ua)
     {
-        if ($session->user_agent && $session->user_agent !== $ua) {
+        if ($session->user_agent && ! strcmp($session->user_agent, $ua)) {
             throw new WrongUserAgentException(
                 "Request user agent '{$ua}' not equals current session user agent",
                 403
@@ -65,7 +65,7 @@ class JwtRefreshTokenService
 
     private function checkIp(JwtSession $session, string $ip)
     {
-        if ($session->ip !== $ip) {
+        if ( ! strcmp($ip, $session->ip)) {
             throw new WrongIpException('You ip address is not equals current session ip');
         }
     }
